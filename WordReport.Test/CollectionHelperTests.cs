@@ -1,7 +1,24 @@
 namespace WordReport.Test;
 
-public class DictionaryHelperTests
+public class CollectionHelperHelperTests
 {
+  [Fact]
+  public void Merge_ShouldCombineTuples()
+  {
+    // Arrange
+    int[] tuple1 = [1, 2, 3];
+    int[] tuple2 = [2, 3, 4];
+    List<int[]> tuples = [ tuple1, tuple2 ];
+
+    // Act
+    int[] combinedTuple = CollectionHelper.Merge(tuples);
+
+    // Assert
+    Assert.Equal(3, combinedTuple[0]);
+    Assert.Equal(5, combinedTuple[1]);
+    Assert.Equal(7, combinedTuple[2]);
+  }
+
   [Fact]
   public void Merge_ShouldCombinedDictionaries()
   {
@@ -24,7 +41,7 @@ public class DictionaryHelperTests
     };
 
     // Act
-    Dictionary<int, int> combinedDictionary = DictionaryHelper.Merge(dictionaries);
+    Dictionary<int, int> combinedDictionary = CollectionHelper.Merge(dictionaries);
 
     // Assert
     Assert.Equal(5, combinedDictionary[1]);
