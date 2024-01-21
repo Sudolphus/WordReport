@@ -25,15 +25,22 @@ public class Driver()
 
   public void PrintData()
   {
-    Console.WriteLine("File Name: " + filePath);
-    Console.WriteLine("Number of Lines: " + numberOfLines);
-    Console.WriteLine("Number of Total Characters: " + characterCounts.Sum());
-    Console.WriteLine("Number Of Letters: " + characterCounts[0]);
-    Console.WriteLine("Number of Digits: " + characterCounts[1]);
-    Console.WriteLine("Number of Other Characters:" + characterCounts[2]);
-    foreach (var wordCount in wordCounts)
+    string directory = Path.GetDirectoryName(filePath) ?? @"c:\";
+    List<string> linesToPrint = [];
+    linesToPrint.Add("File Name: " + filePath);
+    linesToPrint.Add("Number of Lines: " + numberOfLines);
+    linesToPrint.Add("Number of Total Characters: " + characterCounts.Sum());
+    linesToPrint.Add("Number Of Letters: " + characterCounts[0]);
+    linesToPrint.Add("Number of Digits: " + characterCounts[1]);
+    linesToPrint.Add("Number of Other Characters:" + characterCounts[2]);
+    for (int i = 1; i <= wordCounts.Keys.Max(); i++)
+      if (wordCounts.TryGetValue(i, out int value))
+        linesToPrint.Add("Number of " + i + " letter words: " + value);
+
+    using (StreamWriter outputFile = new(Path.Combine(directory, "output.txt")))
     {
-      Console.WriteLine("Number of " + wordCount.Key + " letter words:" + wordCount.Value);
-    }
+      foreach (string line in linesToPrint)
+        outputFile.WriteLine(line);
+    };
   }
 }
