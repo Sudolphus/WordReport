@@ -1,5 +1,4 @@
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
 
 namespace WordReport.Test;
 
@@ -11,10 +10,10 @@ public class WordReportServiceTest
     private static readonly string testMessage2 = "A A A BB BB CCC";
 
     private readonly MockFileSystem fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
-        {
-            { testPath, new MockFileData(testMessage) },
-            { testPath2, new MockFileData(testMessage2) },
-        });
+    {
+        { testPath, new MockFileData(testMessage) },
+        { testPath2, new MockFileData(testMessage2) },
+    });
 
     [Fact]
     public void ReadFile_ShouldThrowError_IfFileDoesntExist()
