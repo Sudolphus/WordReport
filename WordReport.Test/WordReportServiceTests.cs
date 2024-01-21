@@ -6,7 +6,7 @@ namespace WordReport.Test;
 public class WordReportServiceTest
 {
     private static readonly string testPath = @"c:\testfile.txt";
-    private static readonly string testMessage = "Test";
+    private static readonly string testMessage = "Test123!";
     private readonly MockFileSystem fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
         {
             { testPath, new MockFileData(testMessage) },
@@ -43,5 +43,21 @@ public class WordReportServiceTest
 
         // Assert
         Assert.Equal(wordReportService.Lines.First(), testMessage);
+    }
+
+    [Fact]
+    public void GetCharacterCountsByLine_ShouldReturnCharacterCounts_WhenExists()
+    {
+        // Arrange
+        IWordReportService wordReportService = new WordReportService(fileSystem);
+        wordReportService.ReadFile(testPath);
+
+        // Act
+        int[] characterCounts = wordReportService.GetCharacterCountsByLine(wordReportService.Lines.First());
+
+        // Assert
+        Assert.Equal(4, characterCounts[0]);
+        Assert.Equal(3, characterCounts[1]);
+        Assert.Equal(1, characterCounts[2]);
     }
 }
