@@ -1,0 +1,18 @@
+File Name: C:\Users\Micheal\Projects\WordReport\sample_input.txt
+Number of Lines: 4
+Number of Total Characters: 442
+Number Of Letters: 369
+Number of Digits: 0
+Number of Other Characters:73
+Number of 2 letter words: 13
+Number of 3 letter words: 5
+Number of 4 letter words: 9
+Number of 5 letter words: 12
+Number of 6 letter words: 7
+Number of 7 letter words: 9
+Number of 8 letter words: 3
+Number of 9 letter words: 5
+Number of 10 letter words: 3
+Number of 11 letter words: 1
+Number of 12 letter words: 1
+Number of 13 letter words: 1
