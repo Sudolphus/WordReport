@@ -38,4 +38,21 @@ public class WordReportService(IFileSystem fileSystem) : IWordReportService
 
     return [letters, numbers, others];
   }
+
+  public Dictionary<int, int> GetWordLengthsByLine(string line)
+  {
+    string[] splitLine = line.Split(" ");
+    var wordLengths = new Dictionary<int, int>();
+
+    foreach (string word in splitLine)
+    {
+      int length = word.Length;
+      if (wordLengths.TryGetValue(length, out int value))
+        wordLengths[length] = ++value;
+      else
+        wordLengths[length] = 1;
+    }
+
+    return wordLengths;
+  }
 }
